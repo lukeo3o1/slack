@@ -473,9 +473,10 @@ func (t ChannelPagination) Next(ctx context.Context) (_ ChannelPagination, err e
 		"exclude_members":  {strconv.FormatBool(t.excludeMembers)},
 		"token":            {t.c.token},
 		"cursor":           {t.previousResp.Cursor},
+		"types":            {"public_channel,private_channel"},
 	}
 
-	if resp, err = t.c.channelRequest(ctx, "channels.list", values); err != nil {
+	if resp, err = t.c.channelRequest(ctx, "conversations.list", values); err != nil {
 		return t, err
 	}
 
